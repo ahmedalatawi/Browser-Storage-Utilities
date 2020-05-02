@@ -1,0 +1,38 @@
+{
+  "name": "browser-storage-utilities",
+  "version": "1.0.0",
+  "description": "A utility module for storing and accessing data in the browser, and more.",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "build": "rm -rf ./dist && tsc --build ./tsconfig.json",
+    "build:w": "tsc  --build ./tsconfig.json --watch",
+    "test": "NODE_ENV=test mocha -r ts-node/register tests/**/*.spec.ts",
+    "test:w": "NODE_ENV=test mocha -r ts-node/register --watch --watch-files src, tests/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedAlatawi/Browser-Storage-Utilities.git"
+  },
+  "author": "Ahmed Alatawi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AhmedAlatawi/Browser-Storage-Utilities/issues"
+  },
+  "homepage": "https://github.com/AhmedAlatawi/Browser-Storage-Utilities#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.4",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.150",
+    "global": "^4.4.0",
+    "lodash": "^4.17.15"
+  }
+}
