@@ -7,6 +7,9 @@ import { StorageTypes } from './enums/storage-types';
 import { Observable } from 'rxjs';
 import { IStorageNotifier } from './interfaces/storage-typings';
 
+/**
+ * Provides general functionality for StorageUtilities.
+ */
 class StorageUtilitiesGeneral<T> extends StorageBase<T> implements IStorageGeneralOperations<T> {
 	constructor(settings: IStorageSettings) {
 		super(settings);

@@ -4,7 +4,7 @@ import { StorageTypes } from './enums/storage-types';
 import { StorageBase } from './base/storage-base';
 
 /**
- * This 
+ * Provides basic functionality for StorageUtilities.
  */
 class StorageUtilitiesBasic<T> extends StorageBase<T> {
 	defaultSettings: IStorageSettings;
