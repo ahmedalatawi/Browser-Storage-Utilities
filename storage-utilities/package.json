@@ -33,6 +33,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.150",
     "global": "^4.4.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "rxjs": "^6.5.5"
   }
 }

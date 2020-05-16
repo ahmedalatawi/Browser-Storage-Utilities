@@ -1,6 +1,6 @@
 import { StorageUtilities } from '../storage-utilities';
 import { MockCustomer } from './mock-interfaces';
-import { StorageTypes } from '../modules/enums/storage-types';
+import { StorageTypes } from '../enums/storage-types';
 
 export class CustomerStorage extends StorageUtilities<MockCustomer> {
 	constructor() {

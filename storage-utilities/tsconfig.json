@@ -2,20 +2,17 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",
-    "declaration": true,
     "baseUrl": "./",
     "outDir": "./dist",
-    "strict": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "sourceMap": true,
+    "noImplicitUseStrict": true,
     "experimentalDecorators": true,
     "lib": [
         "dom",
         "es2015",
         "es2017"
     ]
-  },
-  "exclude": [
-    "tests/**/*.spec.ts",
-    "node_modules",
-    "dist"
-  ]
+  }
 }
