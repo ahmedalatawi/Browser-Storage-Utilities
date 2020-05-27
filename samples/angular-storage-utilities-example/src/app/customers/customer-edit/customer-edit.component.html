@@ -1,0 +1,18 @@
+<section flex-container fxLayout="column" fxLayoutAlign="space-around center">
+
+  <div mat-dialog-title>
+    <h2>Edit Customer</h2>
+  </div>
+
+  <div mat-dialog-content>
+    <app-customer-detail></app-customer-detail>
+
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px">
+      <button mat-raised-button (click)="dialogRef.close(true)">Cancel</button>
+      <button [disabled]="!customerDetailForm?.customerForm.valid" mat-raised-button
+        (click)="update(customerDetailForm.customerForm.value)">
+        Save</button>
+    </div>
+  </div>
+
+</section>

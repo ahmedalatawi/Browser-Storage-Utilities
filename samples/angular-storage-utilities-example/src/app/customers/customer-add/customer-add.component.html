@@ -1,0 +1,13 @@
+<h2 mat-dialog-title fxLayoutAlign="space-around center">Add Customer</h2>
+
+<section mat-dialog-content>
+  <app-customer-detail></app-customer-detail>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px">
+    <button mat-raised-button (click)="closeModal()">Cancel</button>
+    <button [disabled]="!addCustomerForm?.customerForm.valid" mat-raised-button (click)="add()">Add</button>
+  </div>
+
+  <br><br>
+
+</section>

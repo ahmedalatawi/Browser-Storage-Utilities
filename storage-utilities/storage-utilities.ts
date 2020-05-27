@@ -4,8 +4,7 @@ import { StorageReturnTypes } from './enums/storage-return-types';
 import { StorageItem } from './models/storage-item';
 import { of, Observable } from 'rxjs';
 
-import StorageUtilitiesBasic, { defaultSettings } from './storage-utilities-basic';
-import StorageUtilitiesGeneral from './storage-utilities-general';
+import StorageUtilitiesBase, { defaultSettings } from './storage-utilities-base';
 import { StorageTypes } from './enums/storage-types';
 import { IStorageNotifier } from './interfaces/storage-typings';
 
@@ -19,14 +18,21 @@ export class StorageUtilities<T> {
 	// These settings can be the default, custom settings, or both.
 	private static _settings: IStorageSettings;
 
+	/**
+	 * 
+	 */
+	storageStateChanged: Observable<IStorageNotifier<T>>;
+
 	constructor(settings?: IStorageSettings) {
 		StorageUtilities._settings = {
-			...StorageUtilitiesBasic.defaultSettings,
+			...StorageUtilitiesBase.defaultSettings,
 			...settings
 		};
 		if (settings) {
-			StorageUtilitiesBasic.setCustomSettings(StorageUtilities._settings);
-			StorageUtilitiesGeneral.setCustomSettings(StorageUtilities._settings);
+			StorageUtilitiesBase.setCustomSettings(StorageUtilities._settings);
+		}
+		if (StorageUtilities._settings.notifiedOfStateChanges) {
+			this.storageStateChanged = this.getStorageState();
 		}
 	}
 
@@ -35,7 +41,7 @@ export class StorageUtilities<T> {
      * @returns default settings
      */
 	static get defaultSettings(): IStorageSettings {
-		return StorageUtilitiesBasic.defaultSettings;
+		return StorageUtilitiesBase.defaultSettings;
 	}
 
 	/**
@@ -57,7 +63,7 @@ export class StorageUtilities<T> {
 			throw new Error(`The settings ${settings} are invalid!`);
 		}
 		StorageUtilities._settings = settings;
-		StorageUtilitiesBasic.setCustomSettings(settings);
+		StorageUtilitiesBase.setCustomSettings(settings);
 	}
 
 	/**
@@ -65,7 +71,7 @@ export class StorageUtilities<T> {
      */
 	static resetSettings(): void {
 		StorageUtilities._settings = defaultSettings;
-		StorageUtilitiesBasic.resetSettings();
+		StorageUtilitiesBase.resetSettings();
 	}
 
 	/**
@@ -74,12 +80,12 @@ export class StorageUtilities<T> {
      * The item can be returned as a Promise or Observable if @param returnType is specified.
      * The item is returned from localStorage by default, or sessionStorage as specified by @param storageType.
      * @param key the item's key
-     * @param returnType (optional) Promise / Observable
      * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @param returnType (optional) Promise / Observable
      * @returns the stored item, or null if item is not found or has expired
      */
-	protected getItem(key: string, returnType?: StorageReturnTypes, storageType?: StorageTypes): T {
-		return this._getDataBasedOnReturnType(StorageUtilitiesBasic.getItem(key, storageType), returnType);
+	protected getItem(key: string, storageType?: StorageTypes, returnType?: StorageReturnTypes): T {
+		return this._getDataBasedOnReturnType(StorageUtilitiesBase.getItem(key, storageType), returnType);
 	}
 
 	/**
@@ -93,7 +99,33 @@ export class StorageUtilities<T> {
      * @param storageType (optional) localStorage (default) / sessionStorage
      */
 	protected addItem(key: string, item: T, expiry?: number, storageType?: StorageTypes): void {
-		StorageUtilitiesBasic.addItem(key, item, expiry, storageType);
+		StorageUtilitiesBase.addItem(key, item, expiry, storageType);
+	}
+
+	/**
+	 * Updates the value of a specific property for the stored item.
+	 * The property can be of any type. If the property doesn't exist, a new property will be created.
+	 * If the item is not found by key, or has expired, null will be returned, or updated item otherwise.
+	 * @param key the item's key
+	 * @param propName the item's property to be updated
+	 * @param newValue the item's property's new value
+	 * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @returns the updated item, or null if item is not found or has expired
+	 */
+	protected updateItemProperty(key: string, propName: string, newValue: any, storageType?: StorageTypes): T {
+		return StorageUtilitiesBase.updateItemProp(key, propName, newValue, storageType) as T;
+	}
+
+	/**
+	 * Removes the item's specified property.
+	 * If the item is not found by key, or has expired, null will be returned, or updated item otherwise.
+	 * @param key the item's key
+	 * @param propName the item's property to be removed
+	 * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @returns the updated item, or null if item is not found or has expired
+	 */
+	protected removeItemProperty(key: string, propName: string, storageType?: StorageTypes): T {
+		return StorageUtilitiesBase.removeItemProp(key, propName, storageType) as T;
 	}
 
 	/**
@@ -103,7 +135,7 @@ export class StorageUtilities<T> {
      * @param storageType (optional) localStorage (default) / sessionStorage 
      */
 	protected removeItem(key: string, storageType?: StorageTypes): void {
-		StorageUtilitiesBasic.removeItem(key, storageType);
+		StorageUtilitiesBase.removeItem(key, storageType);
 	}
 
 	/**
@@ -113,7 +145,7 @@ export class StorageUtilities<T> {
      * @param storageType (optional) localStorage (default) / sessionStorage 
      */
 	protected removeItems(keys: string[], storageType?: StorageTypes): void {
-		StorageUtilitiesBasic.removeItems(keys, storageType);
+		StorageUtilitiesBase.removeItems(keys, storageType);
 	}
 
 	/**
@@ -122,43 +154,43 @@ export class StorageUtilities<T> {
      * @returns storage state of Observable type
      */
 	protected getStorageState(): Observable<IStorageNotifier<T>> {
-		return StorageUtilitiesGeneral.getStateObservable() as Observable<IStorageNotifier<T>>;
+		return StorageUtilitiesBase.getStateObservable() as Observable<IStorageNotifier<T>>;
 	}
 
 	/**
      * Returns an Array of all storage items.
      * The items are returned from localStorage by default, or sessionStorage if specified by @param storageType.
      * The items can be returned as a Promise or Observable if @param returnType is specified.
-     * @param returnType (optional) Promise or Observable
      * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @param returnType (optional) Promise or Observable
      * @returns an Array of all storage items
      */
-	protected getStorageItems(returnType?: StorageReturnTypes, storageType?: StorageTypes): StorageItem<T>[] {
-		return this._getDataBasedOnReturnType(StorageUtilitiesGeneral.getItems(storageType), returnType);
+	protected getStorageItems(storageType?: StorageTypes, returnType?: StorageReturnTypes): StorageItem<T>[] {
+		return this._getDataBasedOnReturnType(StorageUtilitiesBase.getItems(storageType), returnType);
 	}
 
 	/**
      * Returns an Array of all storage values.
      * The values are returned from localStorage by default, or sessionStorage if specified by @param storageType.
      * The values can be returned as a Promise or Observable if @param returnType is specified.
-     * @param returnType (optional) Promise or Observable
      * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @param returnType (optional) Promise or Observable
      * @returns an Array of all storage values
      */
-	protected getStorageValues(returnType?: StorageReturnTypes, storageType?: StorageTypes): T[] {
-		return this._getDataBasedOnReturnType(StorageUtilitiesGeneral.getValues(storageType), returnType);
+	protected getStorageValues(storageType?: StorageTypes, returnType?: StorageReturnTypes): T[] {
+		return this._getDataBasedOnReturnType(StorageUtilitiesBase.getValues(storageType), returnType);
 	}
 
 	/**
      * Returns an Array of all storage keys.
      * The keys are returned from localStorage by default, or sessionStorage if specified by @param storageType.
      * The keys can be returned as a Promise or Observable if @param returnType is specified.
-     * @param returnType (optional) Promise or Observable
      * @param storageType (optional) localStorage (default) / sessionStorage
+	 * @param returnType (optional) Promise or Observable
      * @returns an Array of all storage keys
      */
-	protected getStorageKeys(returnType?: StorageReturnTypes, storageType?: StorageTypes): string[] {
-		return this._getDataBasedOnReturnType(StorageUtilitiesGeneral.getKeys(storageType), returnType);
+	protected getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[] {
+		return this._getDataBasedOnReturnType(StorageUtilitiesBase.getKeys(storageType), returnType);
 	}
 
 	/**
@@ -167,7 +199,7 @@ export class StorageUtilities<T> {
      * @param storageType (optional) localStorage (default) / sessionStorage
      */
 	protected clearStorage(storageType?: StorageTypes): void {
-		StorageUtilitiesBasic.clearAll(storageType);
+		StorageUtilitiesBase.clearAll(storageType);
 	}
 
 	private _getDataBasedOnReturnType(data: any, returnType: StorageReturnTypes): any {

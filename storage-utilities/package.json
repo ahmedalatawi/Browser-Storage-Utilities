@@ -1,7 +1,7 @@
 {
   "name": "browser-storage-utilities",
   "version": "1.0.0",
-  "description": "A utility module for storing and accessing data in the browser, and more.",
+  "description": "A utility module for storing and accessing data in the browser storage, and more.",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "scripts": {

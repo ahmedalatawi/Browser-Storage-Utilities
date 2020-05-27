@@ -36,11 +36,11 @@ export class ProductStorage extends StorageUtilities<MockProduct> {
 	}
 
 	getProductPromise(key: string): any {
-		return this.getItem(key, StorageReturnTypes.Promise);
+		return this.getItem(key, null, StorageReturnTypes.Promise);
 	}
 
 	getProductObservable(key: string): any {
-		return this.getItem(key, StorageReturnTypes.Observable);
+		return this.getItem(key, null, StorageReturnTypes.Observable);
 	}
 
 	removeProduct(key: string) {

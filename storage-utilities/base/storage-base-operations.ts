@@ -9,5 +9,7 @@ export abstract class StorageBaseOperations<T> {
 	protected abstract getNotifierObservable(): Observable<IStorageNotifier<T>>;
 	protected abstract remove(key: string, type?: StorageTypes): void;
 	protected abstract removeAll(keys: string[], type?: StorageTypes): void;
+	protected abstract updateProp(key: string, propName: string, newValue: any, type?: StorageTypes): T;
+	protected abstract removeProp(key: string, propName: string, type?: StorageTypes): T;
 	protected abstract clear(type?: StorageTypes): void;
 }

@@ -1,0 +1,77 @@
+<section>
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px">
+    <button mat-raised-button (click)="addCustomer()">Add Customer</button>
+    <button mat-raised-button (click)="removeSelected()">Remove Customer(s)</button>
+  </div>
+</section>
+
+<br>
+
+<section>
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="15px">
+    <label class="example-margin">View Customers:</label>
+    <mat-checkbox class="example-margin" [(ngModel)]="local" (change)="changeStorageType()">Local</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="session" (change)="changeStorageType()">Session
+    </mat-checkbox>
+  </div>
+</section>
+
+<section>
+  <mat-table class="matTable" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef> Select </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (change)="selectCustomer(row)" [(ngModel)]="row.selected"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.firstName }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.lastName }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span class="short-text" style="width: 80px;">{{ row.address }}</span></mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expireIn">
+      <mat-header-cell *matHeaderCellDef> Expire In (ms) </mat-header-cell>
+      <mat-cell *matCellDef="let row"><span class="short-text" style="width: 60px;">{{ row.expireIn }}</span></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="storage">
+      <mat-header-cell *matHeaderCellDef> Storage </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.storage }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Expiry Status </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.status }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let row" fxLayoutGap="5px">
+        <button (click)="editCustomer(row)">Edit</button>
+        <button (click)="deleteCustomer(row)">Remove</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator #paginator [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</section>
