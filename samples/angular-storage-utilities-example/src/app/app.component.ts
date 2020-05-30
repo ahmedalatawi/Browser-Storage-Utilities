@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { StorageTypes } from 'browser-storage-utilities';
+import { StorageTypes, IStorageNotifier } from 'browser-storage-utilities';
 import { CustomerStorageUtilsService } from './services/customer-storage-utils.service';
 import { Subscription } from 'rxjs';
+import { Customer } from './typings/customer';
 
 @Component({
 	selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	constructor(private customerStorageUtilsSvc: CustomerStorageUtilsService) {}
 
 	ngOnInit(): void {
-		this.storageStateSubscription = this.customerStorageUtilsSvc.storageStateChanged.subscribe((state) => {
+		this.storageStateSubscription = this.customerStorageUtilsSvc.storageStateChanged.subscribe((state: IStorageNotifier<Customer>) => {
 			if (state) {
 				console.log('storage: ', state.storage);
 				console.log('oldValue: ', state.oldValue);

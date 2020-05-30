@@ -19,7 +19,8 @@ export class StorageUtilities<T> {
 	private static _settings: IStorageSettings;
 
 	/**
-	 * 
+	 * An Observable type property that allows subscribers to be notified of any storage state changes.
+	 * @returns: { storage: StorageTypes, oldValue: T, newValue: T }
 	 */
 	storageStateChanged: Observable<IStorageNotifier<T>>;
 
