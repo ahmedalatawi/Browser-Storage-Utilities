@@ -152,7 +152,6 @@ console.log('storedUser: ', storedUser); // null
 | `static get currentSettings(): IStorageSettings` | Returns current settings applied to StorageUtilities |
 | `static set customSettings(settings: IStorageSettings)` | Sets custom settings to be applied to StorageUtilities. They will always overwrite default settings |
 | `static resetSettings(): void` | Resets to default settings applied to StorageUtilities |
-|
 
 ## :page_facing_up: Core methods API
 
@@ -164,8 +163,7 @@ console.log('storedUser: ', storedUser); // null
 | `removeItemProperty(key: string, propName: string, storageType?: StorageTypes): T` | Removes the item's specified property. If the item is not found by key, or has expired, `null` will be returned, or updated item will be returned otherwise. 
 | `removeItem(key: string, storageType?: StorageTypes): void` | Removes item from Storage by its key. The item is removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`.
 | `removeItems(keys: string[], storageType?: StorageTypes): void` | Removes items from Storage by their keys. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`.
-| `clearStorage(storageType?: StorageTypes): void` | Removes all items from storage. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. 
-|
+| `clearStorage(storageType?: StorageTypes): void` | Removes all items from storage. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. |
 
 ## :page_facing_up: Additional methods API
 | Methods | Description |
@@ -173,8 +171,7 @@ console.log('storedUser: ', storedUser); // null
 | `getStorageState(): Observable<IStorageNotifier<T>>` | Returns storage state as an `Observable` of type `IStorageNotifier<T>`. All subscribers will be notified when state changes. | 
 | `getStorageItems(storageType?: StorageTypes, returnType?: StorageReturnTypes): StorageItem<T>[]` | Returns an `Array` of all storage items. The items are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The items can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
 | `getStorageValues(storageType?: StorageTypes, returnType?: StorageReturnTypes): T[]` | Returns an `Array` of all storage values. The values are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The values can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
-| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. 
-|
+| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
 
 ## Author :books:
 [Ahmed Alatawi](https://github.com/AhmedAlatawi)
