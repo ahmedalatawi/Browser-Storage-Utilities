@@ -145,6 +145,8 @@ const storedUser = this.userStorageService.getUser('123');
 console.log('storedUser: ', storedUser); // null
 ```
 
+### [Live example in Angular](https://stackblitz.com/edit/angular-storage-utilities-example) :movie_camera:
+
 ### :page_facing_up: Settings API
 
 | Methods | Description |
