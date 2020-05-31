@@ -1,4 +1,4 @@
-# Browser Storage Utilities :hammer_and_pick:
+## Browser Storage Utilities :hammer_and_pick:
 
 :fire: StorageUtilities is a front-end library that provides handy methods to facilitate CRUD operations to data stored in the browser. It also allows global/class level settings to easily, and consistently, manage the state of the stored data. 
 
@@ -13,11 +13,11 @@ The internal implementation relys on the web storage objects `localStorage` and 
 * Provide state change notifications to subscribers
 * Can be easily used in any front-end JavaScript codebase application
 
-## :arrow_down: Installation 
+### :arrow_down: Installation 
 ```sh
 npm install browser-storage-utilities --save
 ```
-## Usage :bulb:
+### Usage :bulb:
 ### TypeScript
 ```typescript
 import { StorageUtilities } from 'browser-storage-utilities';
@@ -71,7 +71,7 @@ export const defaultSettings: IStorageSettings = {
 	  type: StorageTypes.LOCAL // set to localStorage by default
 };
 ```
-## Example :rocket:
+### Example :rocket:
 ```typescript
 import { StorageUtilities, StorageTypes } from 'browser-storage-utilities';
 
@@ -144,16 +144,16 @@ const storedUser = this.userStorageService.getUser('123');
 
 console.log('storedUser: ', storedUser); // null
 ```
-## :page_facing_up: Settings API
+### :page_facing_up: Settings API
 
 | Methods | Description |
 | --- | --- |
 | `static get defaultSettings(): IStorageSettings` | Returns default settings applied to StorageUtilities | 
 | `static get currentSettings(): IStorageSettings` | Returns current settings applied to StorageUtilities |
 | `static set customSettings(settings: IStorageSettings)` | Sets custom settings to be applied to StorageUtilities. They will always overwrite default settings |
-| `static resetSettings(): void` | Resets to default settings applied to StorageUtilities 
+| `static resetSettings(): void` | Resets to default settings applied to StorageUtilities |
 
-## :page_facing_up: Core methods API
+### :page_facing_up: Core methods API
 
 | Methods | Description |
 | --- | --- |
@@ -163,16 +163,15 @@ console.log('storedUser: ', storedUser); // null
 | `removeItemProperty(key: string, propName: string, storageType?: StorageTypes): T` | Removes the item's specified property. If the item is not found by key, or has expired, `null` will be returned, or updated item will be returned otherwise. 
 | `removeItem(key: string, storageType?: StorageTypes): void` | Removes item from Storage by its key. The item is removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`.
 | `removeItems(keys: string[], storageType?: StorageTypes): void` | Removes items from Storage by their keys. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`.
-| `clearStorage(storageType?: StorageTypes): void` | Removes all items from storage. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. 
+| `clearStorage(storageType?: StorageTypes): void` | Removes all items from storage. The items are removed from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. |
 
-## :page_facing_up: Additional methods API
+### :page_facing_up: Additional methods API
 | Methods | Description |
 | --- | --- |
 | `getStorageState(): Observable<IStorageNotifier<T>>` | Returns storage state as an `Observable` of type `IStorageNotifier<T>`. All subscribers will be notified when state changes. | 
 | `getStorageItems(storageType?: StorageTypes, returnType?: StorageReturnTypes): StorageItem<T>[]` | Returns an `Array` of all storage items. The items are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The items can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
 | `getStorageValues(storageType?: StorageTypes, returnType?: StorageReturnTypes): T[]` | Returns an `Array` of all storage values. The values are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The values can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
-| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. 
+| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
 
-## Author :books:
-
+### Author :books:
 [Ahmed Alatawi](https://github.com/AhmedAlatawi)
