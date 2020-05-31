@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { FormErrorsService } from '../../services/form-errors.service';
-import { CustomerStorageUtilsService } from 'src/app/services/customer-storage-utils.service';
-import { Customer } from 'src/app/typings/customer';
+import { CustomerStorageUtilsService } from '../../services/customer-storage-utils.service';
+import { Customer } from '../../typings/customer';
 import { StorageTypes } from 'browser-storage-utilities';
 
 @Component({
