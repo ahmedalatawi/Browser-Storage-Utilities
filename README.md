@@ -22,26 +22,26 @@ npm install browser-storage-utilities --save
 ```typescript
 import { StorageUtilities } from 'browser-storage-utilities';
 
-export class UserStorageService extends StorageUtilities<User> {
-  ...
+export class UserStorageService extends StorageUtilities < User > {
+    ...
 
-  constructor() {
-    super({ /* global settings (optional) */ });
-  }
+    constructor() {
+        super({ /* global settings (optional) */ });
+    }
 
 }
 ```
 ### The settings interface :checkered_flag:
 ```typescript
 export interface IStorageSettings {
-	 keyPrefix?: string; // prefixes all items' keys prior to being stored, e.g. 'user-'
-	 type?: StorageTypes; // localStorage (default) / sessionStorage
-	 setExpiryMilliseconds?: number; // time to live (TTL), e.g. 5000ms
-	 setReturnType?: StorageReturnTypes; // the item(s) to be returned as a Promise or Observable
-	 notifiedOfStateChanges?: boolean; // for subscriber(s) to be notified of any storage state changes
+    keyPrefix ? : string; // prefixes all items' keys prior to being stored, e.g. 'user-'
+    type ? : StorageTypes; // localStorage (default) / sessionStorage
+    setExpiryMilliseconds ? : number; // time to live (TTL), e.g. 5000ms
+    setReturnType ? : StorageReturnTypes; // the item(s) to be returned as a Promise or Observable
+    notifiedOfStateChanges ? : boolean; // for subscriber(s) to be notified of any storage state changes
 }
 ```
- :bulb: **Note:** Some of these settings **(type, setExpiryMilliseconds, and setReturnType)** can be applied per method as well, which always take precedence over global settings:
+**Note: :bulb:** Some of these settings **(type, setExpiryMilliseconds, and setReturnType)** can be applied per method as well, which always take precedence over global settings:
  ```typescript
  // set globally
 ...
@@ -62,48 +62,48 @@ const storedUserPromise = this.userStorageService.getUser('123', StorageTypes.SE
 storedUserPromise.then(user => {
    console.log('user: ', user); // user data
 })
- ```
+```
 
 ### Default settings :pushpin:
 ```typescript
 export const defaultSettings: IStorageSettings = {
-	  keyPrefix: '',
-	  type: StorageTypes.LOCAL // set to localStorage by default
+    keyPrefix: '',
+    type: StorageTypes.LOCAL // set to localStorage by default
 };
 ```
 ### Example :rocket:
 ```typescript
 import { StorageUtilities, StorageTypes } from 'browser-storage-utilities';
 
-export class UserStorageService extends StorageUtilities<User> {
+export class UserStorageService extends StorageUtilities < User > {
 
-  constructor() {
-		super({ keyPrefix: 'user-', notifiedOfStateChanges: true, type: StorageTypes.SESSION });
-  }
-  
-  addUser(id: string, user: User, expiry?: number, storageType?: StorageTypes): void {
-		this.addItem(id, user, expiry, storageType);
-  }
-  
-  getUser(id: string, storageType?: StorageTypes): User {
-		return this.getItem(id, storageType);
-  }
-  
-  updateUserProperty(id: string, propName: string, newValue: any, storageType?: StorageTypes): User {
-		return this.updateItemProperty(id, propName, newValue, storageType);
-  }
-  
-  removeUserProperty(id: string, propName: string, storageType?: StorageTypes): User {
-		return this.updateItemProperty(id, propName, newValue, storageType);
-  }
+    constructor() {
+        super({ keyPrefix: 'user-', notifiedOfStateChanges: true, type: StorageTypes.SESSION });
+    }
 
-  removeUser(id: string, storageType?: StorageTypes): void {
-		this.removeItem(id, storageType);
-  }
-  
-  removeUsers(ids: string[], storageType?: StorageTypes): void {
-		this.removeItems(ids, storageType);
-	}
+    addUser(id: string, user: User, expiry ? : number, storageType ? : StorageTypes): void {
+        this.addItem(id, user, expiry, storageType);
+    }
+
+    getUser(id: string, storageType ? : StorageTypes): User {
+        return this.getItem(id, storageType);
+    }
+
+    updateUserProperty(id: string, propName: string, newValue: any, storageType ? : StorageTypes): User {
+        return this.updateItemProperty(id, propName, newValue, storageType);
+    }
+
+    removeUserProperty(id: string, propName: string, storageType ? : StorageTypes): User {
+        return this.updateItemProperty(id, propName, newValue, storageType);
+    }
+
+    removeUser(id: string, storageType ? : StorageTypes): void {
+        this.removeItem(id, storageType);
+    }
+
+    removeUsers(ids: string[], storageType ? : StorageTypes): void {
+        this.removeItems(ids, storageType);
+    }
 
 }
 ```
@@ -114,13 +114,13 @@ import { IStorageNotifier } from 'browser-storage-utilities';
 
 ...
 
-this.userStorageService.storageStateChanged.subscribe((userData: IStorageNotifier<User>) => {
-			if (userData) {
-				console.log('storage: ', userData.storage); // localStorage or sessionStorage
-				console.log('oldValue: ', userData.oldValue); // previous data
-				console.log('newValue: ', userData.newValue); // current data
-			}
-    });
+this.userStorageService.storageStateChanged.subscribe((userData: IStorageNotifier <User> ) => {
+    if (userData) {
+        console.log('storage: ', userData.storage); // localStorage or sessionStorage
+        console.log('oldValue: ', userData.oldValue); // previous data
+        console.log('newValue: ', userData.newValue); // current data
+    }
+});
 ```
 ### Store data with a 5 second expiry (TTL) :hourglass_flowing_sand:
 ```typescript
@@ -144,6 +144,7 @@ const storedUser = this.userStorageService.getUser('123');
 
 console.log('storedUser: ', storedUser); // null
 ```
+
 ### :page_facing_up: Settings API
 
 | Methods | Description |
