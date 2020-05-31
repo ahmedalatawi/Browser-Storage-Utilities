@@ -171,7 +171,7 @@ console.log('storedUser: ', storedUser); // null
 | `getStorageState(): Observable<IStorageNotifier<T>>` | Returns storage state as an `Observable` of type `IStorageNotifier<T>`. All subscribers will be notified when state changes. | 
 | `getStorageItems(storageType?: StorageTypes, returnType?: StorageReturnTypes): StorageItem<T>[]` | Returns an `Array` of all storage items. The items are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The items can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
 | `getStorageValues(storageType?: StorageTypes, returnType?: StorageReturnTypes): T[]` | Returns an `Array` of all storage values. The values are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The values can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
-| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. |
+| `getStorageKeys(storageType?: StorageTypes, returnType?: StorageReturnTypes): string[]` | Returns an `Array` of all storage keys. The keys are returned from `localStorage` by default, or `sessionStorage` if specified by `@param storageType`. The keys can be returned as a `Promise` or `Observable` if `@param returnType` is specified. 
 
 ## Author :books:
 [Ahmed Alatawi](https://github.com/AhmedAlatawi)
