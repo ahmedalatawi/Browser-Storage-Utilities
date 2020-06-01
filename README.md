@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/AhmedAlatawi/Browser-Storage-Utilities.svg?branch=master)](https://travis-ci.org/AhmedAlatawi/Browser-Storage-Utilities)
 [![Coverage Status](https://coveralls.io/repos/github/AhmedAlatawi/Browser-Storage-Utilities/badge.svg?branch=master)](https://coveralls.io/github/AhmedAlatawi/Browser-Storage-Utilities?branch=master)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/ahmedalatawi?locale.x=en_US)
 
 ## Browser Storage Utilities :hammer_and_pick:
 
