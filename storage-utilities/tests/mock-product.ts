@@ -3,6 +3,8 @@ import { MockProduct } from './mock-interfaces';
 import { StorageReturnTypes } from '../enums/storage-return-types';
 import { StorageItem } from '../models/storage-item';
 import { IStorageSettings } from '../interfaces/storage-settings';
+import { Observable } from 'rxjs';
+import { IStorageNotifier } from '../interfaces/storage-typings';
 
 // (<any>global).isTesting = true;
 
@@ -11,6 +13,10 @@ export class ProductStorage extends StorageUtilities<MockProduct> {
 		super(settings);
 	}
 
+	getProdStorageState(): Observable<IStorageNotifier<MockProduct>> {
+		return this.getStorageState();
+	}
+	
 	getDefaultSettings() {
 		return ProductStorage.defaultSettings;
 	}

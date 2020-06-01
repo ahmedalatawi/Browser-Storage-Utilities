@@ -10,7 +10,7 @@ import { IStorageGeneralOperations, IStorageCollectionOperations } from './inter
 /**
  * Provides base functionality for StorageUtilities.
  */
-class StorageUtilitiesBase<T> extends StorageBase<T> implements IStorageGeneralOperations<T>, IStorageCollectionOperations<T> {
+class StorageUtilitiesBase<T> extends StorageBase<T> implements IStorageGeneralOperations<T> {
 	defaultSettings: IStorageSettings;
 
 	constructor(settings: IStorageSettings) {
@@ -167,54 +167,54 @@ class StorageUtilitiesBase<T> extends StorageBase<T> implements IStorageGeneralO
 	 * @param key 
 	 * @param id 
 	 */
-	findOne(key: string, id: string): T {
+	/*findOne(key: string, id: string): T {
 		// TODO: add implementation to return a single item from an Array
 		return {} as any;
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param key 
 	 */
-	findAll(key: string): T[] {
+	/*findAll(key: string): T[] {
 		// TODO: add implementation to return all Array items by key
 		return [];
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param key 
 	 * @param item 
 	 */
-	addOne(key: string, item: T): void {
+	/*addOne(key: string, item: T): void {
 		// TODO: add implementation to add an item to Array
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param key 
 	 * @param items 
 	 */
-	addAll(key: string, items: T[]): void {
+	/*addAll(key: string, items: T[]): void {
 		// TODO: add implementation to add all items to Array
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param key 
 	 * @param id 
 	 */
-	removeOne(key: string, id: string): void {
+	/*removeOne(key: string, id: string): void {
 		// TODO: add implementation to remove item from Array
-	}
+	}*/
 
 	/**
 	 * 
 	 * @param key 
 	 */
-	reset(key: string): void {
+	/*reset(key: string): void {
 		// TODO: add implementation to reset Array
-	}
+	}*/
 
 	private _parsedJSON(json): any {
 		try {

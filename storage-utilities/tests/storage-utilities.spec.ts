@@ -69,8 +69,9 @@ describe('Storage Utilities', () => {
 	describe('localStorage', () => {
 		describe('logic', () => {
 			beforeEach(() => {
+				productSubscription = null;
 				initStorage(StorageTypes.LOCAL);
-				productStorage = new ProductStorage();
+				productStorage = new ProductStorage({notifiedOfStateChanges: true});
 			});
 
 			describe('basic operations', () => {
@@ -109,6 +110,30 @@ describe('Storage Utilities', () => {
 	
 					}, 300);
 					
+				});
+
+				it('subscribe to storage state changes via storageStateChanged property', () => {
+					productStorage.addProduct('local-product-1', product1);
+
+					productSubscription = productStorage.storageStateChanged.subscribe(state => {
+						expect(state).to.deep.equal({
+							storage: 'localStorage',
+							oldValue: undefined,
+							newValue: product1
+						});
+					});
+				});
+
+				it('subscribe to storage state changes via getStorageState method', () => {
+					productStorage.addProduct('local-product-1', product1);
+
+					productSubscription = productStorage.getProdStorageState().subscribe(state => {
+						expect(state).to.deep.equal({
+							storage: 'localStorage',
+							oldValue: undefined,
+							newValue: product1
+						});
+					});
 				});
 			});
 		});
@@ -168,6 +193,7 @@ describe('Storage Utilities', () => {
 
 	describe('sessionStorage', () => {
 		beforeEach(() => {
+			productSubscription = null;
 			initStorage(StorageTypes.SESSION);
 			productStorage = new ProductStorage({ keyPrefix: 'test-', type: StorageTypes.SESSION });
 		});
