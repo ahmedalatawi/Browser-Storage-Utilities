@@ -30,6 +30,7 @@
     ],
     "reporter": [
       "text",
+      "lcov",
       "text-summary",
       "html"
     ],
