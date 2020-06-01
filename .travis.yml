@@ -6,7 +6,6 @@ install:
 before_install: cd storage-utilities
 script:
   - npm run tsc
-  - npm test
   - npm run cover
 
   # Send coverage data to Coveralls
