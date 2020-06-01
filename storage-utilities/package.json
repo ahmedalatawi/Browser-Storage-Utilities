@@ -9,7 +9,33 @@
     "build": "rm -rf ./dist && tsc --build ./tsconfig.json",
     "build:w": "tsc  --build ./tsconfig.json --watch",
     "test": "NODE_ENV=test mocha -r ts-node/register tests/**/*.spec.ts",
-    "test:w": "NODE_ENV=test mocha -r ts-node/register --watch --watch-files src, tests/**/*.spec.ts"
+    "test:w": "NODE_ENV=test mocha -r ts-node/register --watch --watch-files src, tests/**/*.spec.ts",
+    "cover": "NODE_ENV=test nyc mocha tests/**/*.spec.ts"
+  },
+  "nyc": {
+    "include": [
+      "*.ts"
+    ],
+    "exclude": [
+      "**/index.ts",
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".json"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "text-summary",
+      "html"
+    ],
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
   },
   "repository": {
     "type": "git",
@@ -26,7 +52,11 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.13.4",
     "chai": "^4.2.0",
+    "coveralls": "^3.1.0",
+    "istanbul": "^0.4.5",
     "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "source-map-support": "^0.5.19",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3"
   },
