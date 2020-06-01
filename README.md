@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/AhmedAlatawi/Browser-Storage-Utilities.svg?branch=master)](https://travis-ci.org/AhmedAlatawi/Browser-Storage-Utilities)
+[![Coverage Status](https://coveralls.io/repos/github/AhmedAlatawi/Browser-Storage-Utilities/badge.svg?branch=master)](https://coveralls.io/github/AhmedAlatawi/Browser-Storage-Utilities?branch=master)
+
 ## Browser Storage Utilities :hammer_and_pick:
 
 :fire: StorageUtilities is a front-end library that provides handy methods to facilitate CRUD operations to data stored in the browser. It also allows global/class level settings to easily, and consistently, manage the state of the stored data. 
