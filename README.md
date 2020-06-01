@@ -4,6 +4,8 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/AhmedAlatawi/Browser-Storage-Utilities/issues)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/ahmedalatawi?locale.x=en_US)
 
+### [Live example in Angular](https://stackblitz.com/edit/angular-storage-utilities-example) :movie_camera:
+
 ## Browser Storage Utilities :hammer_and_pick:
 
 :fire: StorageUtilities is a front-end library that provides handy methods to facilitate CRUD operations to data stored in the browser. It also allows global/class level settings to easily, and consistently, manage the state of the stored data. 
@@ -150,8 +152,6 @@ const storedUser = this.userStorageService.getUser('123');
 
 console.log('storedUser: ', storedUser); // null
 ```
-
-### [Live example in Angular](https://stackblitz.com/edit/angular-storage-utilities-example) :movie_camera:
 
 ### :page_facing_up: Settings API
 
