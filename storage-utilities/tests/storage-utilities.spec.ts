@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 import { ProductStorage } from './mock-product';
 import { MockProduct } from './mock-interfaces';
 import { StorageTypes } from '../enums/storage-types';
@@ -174,6 +174,12 @@ describe('Storage Utilities', () => {
 						keyPrefix: 'custom-',
 						type: StorageTypes.LOCAL
 					});
+				});
+
+				it('should throw an error when passing wrong settings', () => {
+					productStorage = new ProductStorage();
+
+					assert.throw(() => { productStorage.setCustomSettings({}) }, Error, `The settings ${{}} are invalid!`);
 				});
 			});
 
