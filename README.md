@@ -30,7 +30,7 @@ npm install browser-storage-utilities --save
 ```typescript
 import { StorageUtilities } from 'browser-storage-utilities';
 
-export class UserStorageService extends StorageUtilities < User > {
+export class UserStorageService extends StorageUtilities <User> {
     ...
 
     constructor() {
@@ -42,11 +42,11 @@ export class UserStorageService extends StorageUtilities < User > {
 ### The settings interface :checkered_flag:
 ```typescript
 export interface IStorageSettings {
-    keyPrefix ? : string; // prefixes all items' keys prior to being stored, e.g. 'user-'
-    type ? : StorageTypes; // localStorage (default) / sessionStorage
-    setExpiryMilliseconds ? : number; // time to live (TTL), e.g. 5000ms
-    setReturnType ? : StorageReturnTypes; // the item(s) to be returned as a Promise or Observable
-    notifiedOfStateChanges ? : boolean; // for subscriber(s) to be notified of any storage state changes
+    keyPrefix? : string; // prefixes all items' keys prior to being stored, e.g. 'user-'
+    type? : StorageTypes; // localStorage (default) / sessionStorage
+    setExpiryMilliseconds? : number; // time to live (TTL), e.g. 5000ms
+    setReturnType? : StorageReturnTypes; // the item(s) to be returned as a Promise or Observable
+    notifiedOfStateChanges? : boolean; // for subscriber(s) to be notified of any storage state changes
 }
 ```
 **Note: :bulb:** Some of these settings **(type, setExpiryMilliseconds, and setReturnType)** can be applied per method as well, which always take precedence over global settings:
@@ -83,17 +83,17 @@ export const defaultSettings: IStorageSettings = {
 ```typescript
 import { StorageUtilities, StorageTypes } from 'browser-storage-utilities';
 
-export class UserStorageService extends StorageUtilities < User > {
+export class UserStorageService extends StorageUtilities <User> {
 
     constructor() {
         super({ keyPrefix: 'user-', notifiedOfStateChanges: true, type: StorageTypes.SESSION });
     }
 
-    addUser(id: string, user: User, expiry ? : number, storageType ? : StorageTypes): void {
+    addUser(id: string, user: User, expiry? : number, storageType? : StorageTypes): void {
         this.addItem(id, user, expiry, storageType);
     }
 
-    getUser(id: string, storageType ? : StorageTypes): User {
+    getUser(id: string, storageType? : StorageTypes): User {
         return this.getItem(id, storageType);
     }
 
@@ -101,15 +101,15 @@ export class UserStorageService extends StorageUtilities < User > {
         return this.updateItemProperty(id, propName, newValue, storageType);
     }
 
-    removeUserProperty(id: string, propName: string, storageType ? : StorageTypes): User {
+    removeUserProperty(id: string, propName: string, storageType? : StorageTypes): User {
         return this.updateItemProperty(id, propName, newValue, storageType);
     }
 
-    removeUser(id: string, storageType ? : StorageTypes): void {
+    removeUser(id: string, storageType? : StorageTypes): void {
         this.removeItem(id, storageType);
     }
 
-    removeUsers(ids: string[], storageType ? : StorageTypes): void {
+    removeUsers(ids: string[], storageType? : StorageTypes): void {
         this.removeItems(ids, storageType);
     }
 
