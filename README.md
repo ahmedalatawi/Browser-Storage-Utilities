@@ -68,7 +68,7 @@ console.log('storedUser: ', storedUser); // user data
 const storedUserPromise = this.userStorageService.getUser('123', StorageTypes.SESSION, StorageReturnTypes.Promise);
 
 storedUserPromise.then(user => {
-   console.log('user: ', user); // user data
+   console.log('user: ', user); //user data
 })
 ```
 
