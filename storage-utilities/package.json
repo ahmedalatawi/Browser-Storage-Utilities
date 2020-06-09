@@ -1,6 +1,6 @@
 {
   "name": "browser-storage-utilities",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A front-end library that provides utility methods to facilitate CRUD operations to data stored in the browser, and more.",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",

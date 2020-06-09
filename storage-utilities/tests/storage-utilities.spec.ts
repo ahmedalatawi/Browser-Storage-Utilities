@@ -249,6 +249,12 @@ describe('Storage Utilities', () => {
 					.subscribe((p) => expect(p).to.equal(product1));
 			});
 
+			it('should return error when returned type is unknown', () => {
+				storage.sessionStorage.set('test-product-1', product1);
+
+				assert.throw(() => { productStorage.getProductUnknownType('product-1') }, Error, `Return type unknown is not supported!`);
+			});
+
 			it('should remove a product from session storage', () => {
 				storage.sessionStorage.set('test-product-1', product1);
 

@@ -49,6 +49,10 @@ export class ProductStorage extends StorageUtilities<MockProduct> {
 		return this.getItem(key, null, StorageReturnTypes.Observable);
 	}
 
+	getProductUnknownType(key: string): any {
+		return this.getItem(key, null, 'unknown' as any);
+	}
+
 	removeProduct(key: string) {
 		this.removeItem(key);
 	}
