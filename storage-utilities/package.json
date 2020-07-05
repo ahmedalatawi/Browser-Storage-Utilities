@@ -48,6 +48,21 @@
     "url": "https://github.com/AhmedAlatawi/Browser-Storage-Utilities/issues"
   },
   "homepage": "https://github.com/AhmedAlatawi/Browser-Storage-Utilities#readme",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "browser",
+    "storage",
+    "localStorage",
+    "sessionStorage",
+    "CRUD",
+    "TTL(Time To Live)",
+    "observables",
+    "promises",
+    "angular",
+    "reactjs",
+    "Vuejs"
+  ],
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
